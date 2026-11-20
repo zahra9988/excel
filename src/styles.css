@@ -238,16 +238,98 @@ h2 { margin: 0; font-size: 16px; font-weight: 600; display: flex; align-items: c
 }
 .btn.sm { height: 34px; padding: 0 12px; font-size: 13px; flex: none; }
 
+/* ---------- Tablet (≤ 900px): small tweaks only ---------- */
+@media (max-width: 900px) {
+  .type-select, .add-col .type-select { width: 150px; }
+}
+
+/* ---------- Phone (≤ 640px). Desktop styles above are untouched. ---------- */
 @media (max-width: 640px) {
-  .sheet-bar { flex-wrap: wrap; }
-  .sheet-bar .btn.sm { width: 100%; }
-  .col-item { flex-wrap: wrap; }
-  .col-item > .input { flex: 1 1 calc(100% - 42px); }
-  .col-item .type-select { flex: 1; width: auto; margin-left: 42px; }
-  .add-col .type-select { width: 100%; }
-  .topbar { flex-direction: column; align-items: flex-start; padding: 12px 16px; }
+  /* 16px inputs stop iPhone Safari from zooming in on focus */
+  .input, .sheet-input { font-size: 16px; }
+
+  /* Top bar stays on one row, step labels hidden */
+  .topbar { padding: 10px 16px; gap: 8px; }
+  .brand { font-size: 14px; }
+  .logo { width: 28px; height: 28px; }
+  .steps { gap: 6px; }
   .step-label { display: none; }
-  .add-col { flex-direction: column; }
+  .step-line { width: 14px; }
+
+  /* Layout */
+  .container { padding: 12px 12px 24px; gap: 12px; }
+  .card { padding: 16px; }
+  .file-card { padding: 14px 16px; }
+  .file-row { max-width: none; }
+  .card-head { margin-bottom: 14px; gap: 12px; }
   .card-head .actions { width: 100%; }
   .card-head .actions .btn { flex: 1; }
+
+  /* Sheet tabs: tabs scroll sideways, add button on its own row */
+  .sheet-bar { flex-wrap: wrap; padding: 8px; gap: 8px; }
+  .sheet-tabs { flex-basis: 100%; }
+  .sheet-tab { height: 36px; }
+  .sheet-icon { width: 26px; height: 26px; font-size: 15px; }
+  .sheet-bar .btn.sm { width: 100%; height: 38px; }
+
+  /* Columns: name on row 1, type + controls on row 2 */
+  .col-list { gap: 14px; }
+  .col-item { flex-wrap: wrap; gap: 8px; }
+  .col-item > .input { flex: 1 1 calc(100% - 40px); min-width: 0; }
+  .col-item .type-select { flex: 1; width: auto; margin-left: 40px; min-width: 0; }
+  .col-letter { width: 32px; }
+  .icon-btn { width: 36px; height: 36px; }
+  .col-options { margin-left: 40px; }
+  .add-col { flex-direction: column; }
+  .add-col .type-select { width: 100%; }
+  .add-col .btn { width: 100%; }
+
+  /* Value entry: one field per row, full-width buttons */
+  .entry { padding: 12px; }
+  .entry-grid { grid-template-columns: 1fr; gap: 10px; }
+  .entry-actions .btn { flex: 1; }
+
+  /* Table becomes stacked cards, one per row */
+  .table-wrap { overflow: visible; border: none; border-radius: 0; }
+  .table, .table tbody, .table tr, .table td { display: block; width: 100%; }
+  .table thead { display: none; }
+  .table tr {
+    position: relative; margin-bottom: 10px; padding: 10px 12px;
+    border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface);
+  }
+  .table tbody tr:last-child { margin-bottom: 0; }
+  .table tbody tr:hover { background: var(--surface); }
+  .table tr.editing { background: #fffaeb; border-color: #fedf89; }
+  .table tr.editing td { background: transparent; }
+  .table td {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+    padding: 5px 0; border-bottom: 1px dashed var(--border); white-space: normal;
+    text-align: right; overflow-wrap: anywhere;
+  }
+  .table td:last-child, .table td.act + td { border-bottom: none; }
+  .table td::before {
+    content: attr(data-label); flex: none; max-width: 45%;
+    color: var(--muted); font-size: 12px; font-weight: 500; text-align: left;
+  }
+  .table td.rownum {
+    width: auto; justify-content: flex-start; gap: 4px; padding: 0 0 6px; margin-bottom: 2px;
+    text-align: left !important; font-weight: 600; color: var(--text); border-bottom: 1px solid var(--border);
+  }
+  .table td.rownum::before { content: 'Row'; color: var(--text); font-size: 13px; font-weight: 600; }
+  .table td.act {
+    position: absolute; top: 4px; right: 6px; width: auto; padding: 0 !important;
+    display: flex; gap: 2px; border: none;
+  }
+  .table td.act::before { content: none; }
+  .table td.act .icon-btn { width: 32px; height: 32px; }
+  .table td:nth-last-child(2):not(.rownum) { border-bottom: none; }
+  .table .num-col { text-align: right; }
+
+  /* Footer: compact sticky bar */
+  .footer-bar { bottom: 8px; padding: 10px 12px; gap: 8px; }
+  .footer-right { gap: 10px; min-width: 0; }
+  .footer-right .muted { font-size: 12px; margin: 0; text-align: right; }
+  .footer-bar .btn.primary { padding: 0 20px; }
+
+  .toast { bottom: 84px; max-width: calc(100% - 32px); text-align: center; }
 }

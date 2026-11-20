@@ -679,7 +679,7 @@ function DataTable({ columns, rows, onEdit, onDelete, editingRow }) {
               {columns.map((c) => {
                 const v = displayValue(r[c.id], c.type)
                 return (
-                  <td key={c.id} className={['number', 'currency', 'percent'].includes(c.type) ? 'num-col' : ''}>
+                  <td key={c.id} data-label={c.name || 'Untitled'} className={['number', 'currency', 'percent'].includes(c.type) ? 'num-col' : ''}>
                     {v ? (c.type === 'yesno' ? <span className={`pill ${v === 'Yes' ? 'yes' : 'no'}`}>{v}</span> : v) : <span className="dash">—</span>}
                   </td>
                 )
